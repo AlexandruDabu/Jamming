@@ -20,6 +20,7 @@ function Track(props) {
                 <p>{props.track.artist} | {props.track.album}</p>
             </div>
             {renderAction()}
+            
         </div>
     )
 }

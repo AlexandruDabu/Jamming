@@ -1,0 +1,70 @@
+.UserPlaylist{
+    width: 20%;
+    max-height: 950px;
+    overflow-y: scroll;
+    padding: 2.27rem 1.16rem;
+    background-color: rgba(1, 12, 63, 0.7);
+    box-shadow: 0 4px 2px 2px #000000;
+}
+.UserPlaylist h2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:0;
+  margin-bottom: 2.29rem;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+@media only screen and (max-width: 1020px) {
+  .SearchResults {
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+}
+.PlaylistTrackList{
+  width: 100%;
+}
+.Playlist-Information{
+  flex-grow: 1;
+  display: flex;
+  padding: .22rem;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius:6px;
+  border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+  cursor: pointer;
+}
+.Playlist-Information:hover {
+  background-color: rgba(1, 12, 63, 0.85); /* Adjusted opacity on hover */
+  box-shadow: 0 2px 1px 1px #000000;
+  border-radius: 6px;
+}
+  .Playlist-Information h3{
+    margin-bottom: .22rem;
+  }
+  .Playlist-Information h3 span{
+  }
+.Playlist-Information p{
+  font-size: .83rem;
+  font-weight: 300;
+  color: rgba(256, 256, 256, 0.8);
+}
+.delete-btn{
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.05rem;
+  transition: color .25s;
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  width:30%;
+  margin:0;
+}
+.delete-btn:hover {
+  color: rgba(265, 265, 265, .5);
+}

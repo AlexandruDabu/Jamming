@@ -1,5 +1,6 @@
 let accessToken = null;
 const clientID = '5287d3b2a4cb4369a25a85cfdd96baef';
+const client_secret = '89ab1d704bfc437a8d924fa82b1ea7f1';
 const redirectURI = 'http://localhost:3000';
 const Spotify = {
     getAccessToken() {
@@ -32,7 +33,7 @@ const Spotify = {
         headers: {Authorization: `Bearer ${accessToken}`},
     })
     if(!response.ok){
-        throw new Error('Failed to fetch');
+        console.log('failed fetching');;
     }
         const data = await response.json();
         return data.tracks.items.map(track => ({
@@ -92,6 +93,53 @@ const Spotify = {
             body: JSON.stringify({uris: trackUris}),
         })
     },
+    async getUserPlaylist() {
+        try{
+        const accessToken = Spotify.getAccessToken();
+        let user = await Spotify.getCurrentUser();
+        
+            const response = await fetch(`https://api.spotify.com/v1/users/${user.id}/playlists`,{
+            method: 'GET',
+            headers: {Authorization: `Bearer ${accessToken}`}}
+        )
+        if(!response.ok){
+            console.log('Failed to get Playlists')
+        }
+        const data = await response.json()
+        return data;
+        }catch(error){
+            console.log(error);
+        }
 
+    },
+    async getUserPlaylistById(id) {
+        try{
+            const accessToken = Spotify.getAccessToken();
+            const response = await fetch(`https://api.spotify.com/v1/playlists/${id}`,{
+                method: 'GET',
+                headers: {Authorization: `Bearer ${accessToken}`}
+            })
+            if(!response.ok)
+                console.log('Failed to fetch playlistById');
+            const data = response.json();
+            return data;
+        }catch(error){
+            console.log(error);
+        }
+    },
+    async updatePlaylist(id,trackUris) {
+        const accessToken = Spotify.getAccessToken();
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${id}/tracks`,{
+            method:'PUT',
+            headers: {Authorization: `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'},
+            body: JSON.stringify({uris: trackUris})
+        })
+        if(!response.ok){
+            const errorResponse = await response.json();
+            console.log(errorResponse);
+        }
+        
+    }
     }
 export { Spotify }

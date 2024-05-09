@@ -11,7 +11,7 @@ function Playlist(props) {
             <input onChange={handleNameChange} value={props.playlistName}/>
             <TrackList userSearchResults = {props.playlistTracks} onRemove={props.onRemove} isRemoval={true}/>
             {/* TrackList Comp */}
-            <button onClick={props.onSave}
+            <button onClick={props.isSelected ? () => props.onUpdate(props.isSelected) : props.onSave}
              className="Playlist-save"
              disabled={props.isLoading}
              >SAVE TO SPOTIFY</button>
