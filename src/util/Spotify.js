@@ -1,6 +1,5 @@
 let accessToken = '';
 const clientID = '5287d3b2a4cb4369a25a85cfdd96baef';
-const client_secret = '89ab1d704bfc437a8d924fa82b1ea7f1';
 const redirectURI = 'http://localhost:3000/callback';
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const RESPONSE_TYPE = 'token';

@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import './SearchBar.css'
-import LoadingSpinner from "../LoadingSpinner/LoadinSpinner";
 function SearchBar(props) {
     const [term,setTerm] = useState('');
     const passTerm = () => {

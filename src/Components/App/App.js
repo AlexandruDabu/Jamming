@@ -1,6 +1,6 @@
 import './App.css';
 import SearchBar from '../SearchBar/SearchBar'
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import {Spotify} from '../../util/Spotify'
@@ -12,7 +12,6 @@ function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [userPlaylist, setUserPlaylist] = useState([]);
     const [isSelected, setSelected] = useState('');
-    const [accessToken, setAccessToken] = useState('');
 
     const addTrack = (track) =>{
         if(playlistTracks.some(temp => temp.id === track.id))
