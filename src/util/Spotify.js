@@ -1,6 +1,6 @@
 let accessToken = '';
 const clientID = '5287d3b2a4cb4369a25a85cfdd96baef';
-const redirectURI = 'http://localhost:3000/callback';
+const redirectURI = 'https://jamming20.netlify.app/callback';
 // const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 // const RESPONSE_TYPE = 'token';
 // const scopes = ['user-read-private',
