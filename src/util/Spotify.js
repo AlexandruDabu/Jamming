@@ -1,19 +1,19 @@
 let accessToken = '';
 const clientID = '5287d3b2a4cb4369a25a85cfdd96baef';
 const redirectURI = 'http://localhost:3000/callback';
-const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
-const RESPONSE_TYPE = 'token';
-const scopes = ['user-read-private',
-'user-read-email',
-'user-library-read',
-'user-library-modify',
-'user-top-read',
-'playlist-read-private',
-'playlist-modify-public',
-'playlist-modify-private',
-'playlist-read-collaborative',
-    // Add more scopes as needed
-  ];
+// const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
+// const RESPONSE_TYPE = 'token';
+// const scopes = ['user-read-private',
+// 'user-read-email',
+// 'user-library-read',
+// 'user-library-modify',
+// 'user-top-read',
+// 'playlist-read-private',
+// 'playlist-modify-public',
+// 'playlist-modify-private',
+// 'playlist-read-collaborative',
+//     // Add more scopes as needed
+//   ];
 const Spotify = {
     async getAccessToken() {
             
