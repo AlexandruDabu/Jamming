@@ -12,13 +12,13 @@ function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [userPlaylist, setUserPlaylist] = useState([]);
     const [isSelected, setSelected] = useState('');
+    const [accessToken, setAccessToken] = useState('');
 
     const addTrack = (track) =>{
         if(playlistTracks.some(temp => temp.id === track.id))
             return;
         setSerachResults(prev => prev.filter(item => item.id !== track.id))
         setPlaylistTracks(prev => [...prev, track]);
-        console.log(playlistTracks)
     }
 
     const removeTrack = (track) => {
@@ -36,6 +36,7 @@ function App() {
             Spotify.savePlaylist(playlistName,trackURIs).then(() => {
                 setPlaylistName("NewPlaylist")
                 setPlaylistTracks([])
+                setSerachResults([])
                 setIsLoading(false);
                 setSelected('');
                 getUserPlaylist();
@@ -61,7 +62,6 @@ function App() {
             setUserPlaylist(data)
             setIsLoading(false);
         } catch(error){
-            console.log(error)
             setIsLoading(false);
         }
     }
@@ -69,6 +69,7 @@ function App() {
         getUserPlaylist();
     },[])
     const getUserPlaylistById = async (id) => {
+        setIsLoading(true);
         const data = await Spotify.getUserPlaylistById(id)
         const datanew = data.tracks.items.map(item => ({
             id: item.track.id,
@@ -80,6 +81,7 @@ function App() {
         }));
         setPlaylistTracks(datanew);
         setSelected(id);
+        setIsLoading(false);
     }
     const updatePlaylist = async (id) => {
         const trackURIs = playlistTracks.map((temp) => temp.uri)
@@ -104,7 +106,8 @@ function App() {
                 <SearchBar onSearch={search}/>
             <div className="App-playlist">
                 <UserPlaylist userPlaylist={userPlaylist}
-                getUserPlaylistById={getUserPlaylistById}/>
+                getUserPlaylistById={getUserPlaylistById}
+                isLoading={isLoading}/>
                 <SearchResults isLoading={isLoading}
                 onAdd={addTrack} 
                 userSearchResults={searchResults}/>
