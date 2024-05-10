@@ -17,20 +17,20 @@ const scopes = ['user-read-private',
 const Spotify = {
     async getAccessToken() {
             
-            accessToken = window.localStorage.getItem("token");
-            if(accessToken)
-            return accessToken;
-            window.location.href = `${AUTH_ENDPOINT}?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=${RESPONSE_TYPE}&scope=${scopes.join('%20')}`
-            const hash = window.location.hash;
+            // accessToken = window.localStorage.getItem("token");
+            // if(accessToken)
+            // return accessToken;
+            // window.location.href = `${AUTH_ENDPOINT}?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=${RESPONSE_TYPE}&scope=${scopes.join('%20')}`
+            // const hash = window.location.hash;
 
-            if(!accessToken && hash){
+            // if(!accessToken && hash){
 
-                accessToken = hash.substring(1).split("&").find(elem => elem.startsWith('access_token')).split("=")[1];
+            //     accessToken = hash.substring(1).split("&").find(elem => elem.startsWith('access_token')).split("=")[1];
                 
-                window.location.hash = "";
-                window.localStorage.setItem("token", accessToken)
-                return accessToken;
-            }
+            //     window.location.hash = "";
+            //     window.localStorage.setItem("token", accessToken)
+            //     return accessToken;
+            // }
             // Check if there is already a valid access token
             // if (accessToken) return accessToken;
         
@@ -58,25 +58,25 @@ const Spotify = {
             // }
 
         // // VARIANTA2
-        // if(accessToken) return accessToken;
-        // const tokenInUrl = window.location.href.match(/access_token=([^&]*)/);
-        // const expiryTime = window.location.href.match(/expires_in=([^&]*)/);
-        // if(tokenInUrl && expiryTime) {
-        // // Setting access token and expiry time vars
-        //     accessToken = tokenInUrl[1];
-        //     const expiresIn = Number(expiryTime[1])
+        if(accessToken) return accessToken;
+        const tokenInUrl = window.location.href.match(/access_token=([^&]*)/);
+        const expiryTime = window.location.href.match(/expires_in=([^&]*)/);
+        if(tokenInUrl && expiryTime) {
+        // Setting access token and expiry time vars
+            accessToken = tokenInUrl[1];
+            const expiresIn = Number(expiryTime[1])
         
-        // // Setting the function which will reset the access token when it expires
-        // window.setTimeout(() => (accessToken = ''), expiresIn * 1000 )
+        // Setting the function which will reset the access token when it expires
+        window.setTimeout(() => (accessToken = ''), expiresIn * 1000 )
             
-        // // clearing the url after the access token expires
-        //     window.history.pushState("Access token", null,"/");
-        //     return accessToken;
-        // }
+        // clearing the url after the access token expires
+            window.history.pushState("Access token", null,"/");
+            return accessToken;
+        }
 
-        // //Third check for accessToken
-        // const redirect = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
-        // window.location.href = redirect;
+        //Third check for accessToken
+        const redirect = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
+        window.location.href = redirect;
 
 
     },
